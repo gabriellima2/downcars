@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { BsWhatsapp } from "react-icons/bs";
 
-import { Nav, SidenavMobile } from "./Navigation";
+import { NavigationAnchors, NavigationMobile } from "./Navigation";
 
 export const Header = () => {
 	return (
@@ -10,7 +10,7 @@ export const Header = () => {
 				<Image src="/logo.svg" width="140px" height="50px" />
 			</a>
 			<div className="hidden md:flex md:gap-14">
-				<Nav />
+				<NavigationAnchors />
 				<a
 					href="#"
 					className="bg-whatsapp-900 p-2 rounded-full text-black text-xl hover:bg-whatsapp-transparent hover:transition-colors"
@@ -20,7 +20,7 @@ export const Header = () => {
 			</div>
 
 			<div className="md:hidden">
-				<SidenavMobile />
+				<NavigationMobile />
 			</div>
 		</header>
 	);

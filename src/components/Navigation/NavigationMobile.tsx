@@ -2,9 +2,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { BsXLg } from "react-icons/bs";
 import Image from "next/image";
 
-import { Nav } from "./";
+import { NavigationAnchors } from ".";
 
-export const SidenavMobile = () => {
+export const NavigationMobile = () => {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger>
@@ -17,7 +17,7 @@ export const SidenavMobile = () => {
 				<Dialog.Close className="absolute right-10 top-10 text-2xl text-white">
 					<BsXLg />
 				</Dialog.Close>
-				<Nav />
+				<NavigationAnchors />
 				<div className="absolute bottom-5">
 					<Image src="/logo.svg" width="130px" height="38px" />
 				</div>

@@ -1,6 +1,6 @@
 import anchors from "../../mocks/anchors.json";
 
-export const Nav = () => (
+export const NavigationAnchors = () => (
 	<nav className="flex items-center gap-14">
 		<ul className="flex items-center gap-14 md:flex-row flex-col">
 			{anchors.map((anchor) => (

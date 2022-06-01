@@ -1,4 +1,4 @@
-import { Nav } from "./Nav";
-import { SidenavMobile } from "./SidenavMobile";
+import { NavigationAnchors } from "./NavigationAnchors";
+import { NavigationMobile } from "./NavigationMobile";
 
-export { Nav, SidenavMobile };
+export { NavigationAnchors, NavigationMobile };
