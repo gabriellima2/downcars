@@ -1,13 +1,19 @@
 import type { NextPage } from "next";
+import { BsTelephone, BsWhatsapp, BsEnvelope } from "react-icons/bs";
 
 import { HeadSEO } from "../infra/HeadSEO";
 
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
+import { QuickContacts } from "../components/Contacts";
 
-import banners from "../mocks/banners.json";
-import { Popover } from "@headlessui/react";
-import { BsTelephone, BsWhatsapp, BsEnvelope } from "react-icons/bs";
+import { banners, contacts } from "../mocks";
+
+const icons = {
+	telefone: BsTelephone,
+	whatsapp: BsWhatsapp,
+	email: BsEnvelope,
+};
 
 const Home: NextPage = () => {
 	return (
@@ -39,34 +45,24 @@ const Home: NextPage = () => {
 						))}
 					</Carousel>
 				</section>
+				<footer className="w-1/2 max-w-md px-10 absolute bottom-8 right-0 flex items-center justify-between">
+					<div className="text-light-blue tracking-wider self-end">
+						<h1 className="text-3xl font-bold">
+							+10<span className="uppercase text-base">anos</span>
+						</h1>
+						<small className="text-sm capitalize font-light">
+							de experiência
+						</small>
+					</div>
+					<section className="self-end">
+						<ul className="flex items-end gap-2">
+							{contacts.map((contact) => (
+								<QuickContacts {...contact} icon={icons[contact.title]} />
+							))}
+						</ul>
+					</section>
+				</footer>
 			</main>
-
-			<footer>
-				<section>
-					<h1>
-						+10 <span>anos De Experiência</span>
-					</h1>
-				</section>
-				<section>
-					<ul>
-						<li>
-							<a href="#">
-								<BsTelephone />
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<BsWhatsapp />
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<BsEnvelope />
-							</a>
-						</li>
-					</ul>
-				</section>
-			</footer>
 		</>
 	);
 };
