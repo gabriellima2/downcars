@@ -2,15 +2,14 @@ import { Dialog } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
 import Image from "next/image";
 
-import { NavigationAnchors } from ".";
-import { useState } from "react";
+import { AnchorsNavigation } from ".";
 
 interface NavigationMobileProps {
 	isActive: boolean;
 	disableSidebar: () => void;
 }
 
-export const NavigationMobile = ({
+export const MobileNavigation = ({
 	isActive,
 	disableSidebar,
 }: NavigationMobileProps) => {
@@ -26,7 +25,7 @@ export const NavigationMobile = ({
 				</button>
 
 				<section>
-					<NavigationAnchors />
+					<AnchorsNavigation />
 				</section>
 
 				<footer className="absolute bottom-5">

@@ -7,7 +7,7 @@ import { Carousel } from "../components/Carousel";
 
 import banners from "../mocks/banners.json";
 import { Popover } from "@headlessui/react";
-import { BsTelephone } from "react-icons/bs";
+import { BsTelephone, BsWhatsapp, BsEnvelope } from "react-icons/bs";
 
 const Home: NextPage = () => {
 	return (
@@ -40,6 +40,33 @@ const Home: NextPage = () => {
 					</Carousel>
 				</section>
 			</main>
+
+			<footer>
+				<section>
+					<h1>
+						+10 <span>anos De Experiência</span>
+					</h1>
+				</section>
+				<section>
+					<ul>
+						<li>
+							<a href="#">
+								<BsTelephone />
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<BsWhatsapp />
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<BsEnvelope />
+							</a>
+						</li>
+					</ul>
+				</section>
+			</footer>
 		</>
 	);
 };

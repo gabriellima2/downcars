@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import anchors from "../../mocks/anchors.json";
 
-export const NavigationAnchors = () => {
+export const AnchorsNavigation = () => {
 	const [activeAnchor, setActiveAnchor] = useState("#home");
 
 	return (

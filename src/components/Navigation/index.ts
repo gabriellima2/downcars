@@ -1,4 +1,4 @@
-import { NavigationAnchors } from "./NavigationAnchors";
-import { NavigationMobile } from "./NavigationMobile";
+import { AnchorsNavigation } from "./AnchorsNavigation";
+import { MobileNavigation } from "./MobileNavigation";
 
-export { NavigationAnchors, NavigationMobile };
+export { AnchorsNavigation, MobileNavigation };
