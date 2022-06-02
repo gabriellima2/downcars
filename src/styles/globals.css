@@ -14,6 +14,10 @@ html, body {
 	height: 100%;
 }
 
-a {
-	@apply text-light-blue;
+a, button {
+	@apply text-light-blue font-poppins;
+}
+
+.outline--focus {
+	@apply focus:outline-none focus:ring-4 focus:ring-accent-blue-900/30 focus:ring-offset-2 focus:ring-offset-accent-blue-900 focus:bg-none;
 }

@@ -1,0 +1,18 @@
+[
+	{
+		"smallText": "oficina mecânica",
+		"mainText": "downcars",
+		"button": {
+			"text": "serviços",
+			"anchor": "#services"
+		}
+	},
+	{
+		"smallText": "especializada em carros",
+		"mainText": "downcars",
+		"button": {
+			"text": "contatos",
+			"anchor": "#contacts"
+		}
+	}
+]

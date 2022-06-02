@@ -1,27 +1,38 @@
-import * as Dialog from "@radix-ui/react-dialog";
+import { Dialog } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
 import Image from "next/image";
 
 import { NavigationAnchors } from ".";
+import { useState } from "react";
 
-export const NavigationMobile = () => {
+interface NavigationMobileProps {
+	isActive: boolean;
+	disableSidebar: () => void;
+}
+
+export const NavigationMobile = ({
+	isActive,
+	disableSidebar,
+}: NavigationMobileProps) => {
 	return (
-		<Dialog.Root>
-			<Dialog.Trigger>
-				<Image src="/menu.svg" width="40px" height="40px" />
-			</Dialog.Trigger>
-
-			<Dialog.Overlay className="absolute bg-black" />
-
-			<Dialog.Content className="w-full max-w-[370px] h-full bg-black/95 absolute right-0 top-0 flex flex-col items-center justify-center">
-				<Dialog.Close className="absolute right-10 top-10 text-2xl text-white">
+		<Dialog open={isActive} onClose={disableSidebar} className="md:hidden z-50">
+			<Dialog.Panel className="w-full max-w-[370px] h-full bg-black/95 absolute right-0 top-0 flex flex-col items-center justify-center">
+				<Dialog.Title>Side Navigation</Dialog.Title>
+				<button
+					onClick={disableSidebar}
+					className="absolute right-10 top-10 text-2xl text-white"
+				>
 					<BsXLg />
-				</Dialog.Close>
-				<NavigationAnchors />
-				<div className="absolute bottom-5">
+				</button>
+
+				<section>
+					<NavigationAnchors />
+				</section>
+
+				<footer className="absolute bottom-5">
 					<Image src="/logo.svg" width="130px" height="38px" />
-				</div>
-			</Dialog.Content>
-		</Dialog.Root>
+				</footer>
+			</Dialog.Panel>
+		</Dialog>
 	);
 };

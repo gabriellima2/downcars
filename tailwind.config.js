@@ -30,8 +30,20 @@ module.exports = {
 				},
 			},
 		},
+
 		fontFamily: {
 			poppins: ["'Poppins', 'Helvetica', sans-serif"],
+		},
+
+		keyframes: {
+			movement: {
+				to: { transform: "translateX(0px)", visibility: "visible" },
+				from: { transform: "translateX(-20px)", visibility: "hidden" },
+			},
+		},
+
+		animation: {
+			movement: "movement 1s ease-in-out forwards",
 		},
 	},
 	plugins: [],
