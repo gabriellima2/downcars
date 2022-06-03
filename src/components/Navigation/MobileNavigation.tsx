@@ -15,7 +15,7 @@ export const MobileNavigation = ({
 }: NavigationMobileProps) => {
 	return (
 		<Dialog open={isActive} onClose={disableSidebar} className="md:hidden z-50">
-			<Dialog.Panel className="w-full max-w-[370px] h-full bg-black/95 absolute right-0 top-0 flex flex-col items-center justify-center">
+			<Dialog.Panel className="w-full max-w-[70vw] sm:max-w-[300px] h-full bg-black/95 absolute right-0 top-0 flex flex-col items-center justify-center">
 				<Dialog.Title>Side Navigation</Dialog.Title>
 				<button
 					onClick={disableSidebar}

@@ -25,8 +25,8 @@ module.exports = {
 					900: "#2679DA",
 				},
 				whatsapp: {
-					transparent: "#47E757B1",
-					900: "#47E757",
+					transparent: "#0FB840B1",
+					900: "#0FB840",
 				},
 			},
 		},
@@ -35,15 +35,12 @@ module.exports = {
 			poppins: ["'Poppins', 'Helvetica', sans-serif"],
 		},
 
-		keyframes: {
-			movement: {
-				to: { transform: "translateX(0px)", visibility: "visible" },
-				from: { transform: "translateX(-20px)", visibility: "hidden" },
-			},
-		},
-
-		animation: {
-			movement: "movement 1s ease-in-out forwards",
+		screen: {
+			sm: "540px",
+			md: "738px",
+			lg: "1024px",
+			xl: "1280px",
+			"2xl": "1536px",
 		},
 	},
 	plugins: [],
