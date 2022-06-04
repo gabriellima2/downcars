@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { BsChevronCompactDown } from "react-icons/bs";
+import { BsArrowDownRight, BsChevronCompactDown } from "react-icons/bs";
 
 import { HeadSEO } from "../infra/HeadSEO";
 
@@ -8,6 +8,7 @@ import { Carousel } from "../components/Carousel";
 import { QuickContacts } from "../components/Contacts";
 
 import { banners, contacts } from "../mocks";
+import { PageIntroText } from "../components/PageIntroText";
 
 const Home: NextPage = () => {
 	return (
@@ -17,26 +18,30 @@ const Home: NextPage = () => {
 			<main className="flex flex-col justify-between items-center relative bg-home-image-mobile sm:bg-home-image-desktop w-full h-full bg-cover bg-no-repeat bg-center">
 				<Header />
 
-				<section className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue">
-					<Carousel>
+				<section
+					aria-labelledby="carousel-title"
+					className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue"
+				>
+					<Carousel carouselTitle="Informações da Oficina">
 						{banners.map((banner) => (
 							<article
 								key={banner.id}
 								className="flex flex-col items-center sm:gap-6"
 							>
 								<div className="flex flex-col items-center">
-									<span className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
+									<small className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
 										{banner.smallText}
-									</span>
+									</small>
 									<h1 className="text-[3.4rem] sm:text-8xl md:text-[7rem] font-medium text-transparent bg-clip-text bg-gradient-to-t from-[#0C2338]/5 via-light-blue/50 to-light-blue">
 										{banner.mainText}
 									</h1>
 								</div>
 								<a
 									href={banner.button.anchor}
-									className="bg-gradient-to-t from-accent-blue-900 via-accent-blue-900/60 to-accent-blue-transparent py-[16px] sm:py-[20px] px-9 sm:px-12 rounded-sm font-bold text-xs sm:text-[1rem] tracking-widest outline--focus hover:opacity-80 hover:transition-all"
+									className="w-fit flex items-center gap-2 sm:gap-4 bg-blue-700 rounded-md font-bold py-2 px-4 sm:px-6 text-xs sm:text-[1rem] tracking-widest outline--focus hover:bg-blue-800 hover:opacity-90 hover:transition-all"
 								>
 									{banner.button.text}
+									<BsArrowDownRight className="bg-blue-800 p-1 sm:p-2 w-7 sm:w-10 h-7 sm:h-10 rounded-md" />
 								</a>
 							</article>
 						))}
@@ -71,6 +76,17 @@ const Home: NextPage = () => {
 					</section>
 				</footer>
 			</main>
+
+			<section className="bg-black text-light-blue">
+				<PageIntroText
+					attr={{
+						small: "serviços",
+						title: "Transparência e Confiabilidade define nossos serviços",
+						subtitle:
+							"Esses são alguns de nossos principais serviços, para mais informações entre em contato!",
+					}}
+				/>
+			</section>
 		</>
 	);
 };

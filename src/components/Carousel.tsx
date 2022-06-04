@@ -1,40 +1,95 @@
 import { ReactNode, useEffect, useState } from "react";
-import { BsCircle, BsCircleFill } from "react-icons/bs";
+import {
+	BsCircle,
+	BsCircleFill,
+	BsPauseFill,
+	BsPlayFill,
+} from "react-icons/bs";
 
 interface CarouselProps {
 	children: ReactNode[];
+	carouselTitle: string;
 }
 
-export const Carousel = ({ children }: CarouselProps) => {
+export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 	const [indexCurrentElement, setIndexCurrentElement] = useState(0);
+	const [isStopped, setIsStopped] = useState(false);
+
+	let rangeSlider: undefined | NodeJS.Timer = undefined;
 
 	useEffect(() => {
-		const interval = setInterval(moveCarousel, 4000);
+		if (isStopped) return clearInterval(rangeSlider);
 
-		return () => clearInterval(interval);
-	}, []);
+		rangeSlider = setInterval(moveCarousel, 1000);
+
+		return () => clearInterval(rangeSlider);
+	}, [isStopped]);
 
 	const moveCarousel = () =>
 		setIndexCurrentElement((prev) => (prev + 1) % children.length);
 
+	const handleSlider = (action: "stop" | "start") => {
+		if (action === "stop") return setIsStopped(true);
+
+		if (action === "start") return setIsStopped(false);
+	};
+
 	return (
-		<div className="flex flex-col items-center gap-5">
-			<div>{children[indexCurrentElement]}</div>
-			<footer>
-				{children.map((element, elementIndex) => (
+		<>
+			<h1 id="carousel-title" className="hidden">
+				{carouselTitle}
+			</h1>
+			<ul className="flex flex-col items-center gap-5">
+				<li
+					id="banners"
+					aria-live="polite"
+					aria-atomic="true"
+					aria-label={`Item ${indexCurrentElement} de ${children.length}`}
+					onMouseEnter={() => handleSlider("stop")}
+					onMouseLeave={() => handleSlider("start")}
+					onFocus={() => handleSlider("stop")}
+					onBlur={() => handleSlider("start")}
+				>
+					{children[indexCurrentElement]}
+				</li>
+				<footer aria-controls="banners" className="flex items-center">
+					{children.map((element, elementIndex) => (
+						<button
+							key={Math.random()}
+							type="button"
+							data-slide={elementIndex}
+							disabled={indexCurrentElement === elementIndex}
+							onClick={() => setIndexCurrentElement(elementIndex)}
+							className="text-white text-[10px] sm:text-xs mx-1"
+						>
+							{indexCurrentElement === elementIndex ? (
+								<BsCircleFill className="text-blue-500" />
+							) : (
+								<BsCircle />
+							)}
+							<span className="hidden">Informações da Oficina</span>
+						</button>
+					))}
 					<button
-						key={Math.random()}
-						className="text-white text-[10px] sm:text-xs mx-1"
-						onClick={() => setIndexCurrentElement(elementIndex)}
+						type="button"
+						data-action={isStopped ? "start" : "stop"}
+						onClick={() => handleSlider(isStopped ? "start" : "stop")}
+						className="text-lg"
 					>
-						{indexCurrentElement === elementIndex ? (
-							<BsCircleFill className="text-blue-500" />
+						{isStopped ? (
+							<>
+								<span className="hidden">Ativar slide</span>
+								<BsPlayFill />
+							</>
 						) : (
-							<BsCircle />
+							<>
+								<span className="hidden">Pausar slide</span>
+								<BsPauseFill />
+							</>
 						)}
 					</button>
-				))}
-			</footer>
-		</div>
+				</footer>
+			</ul>
+		</>
 	);
 };

@@ -19,8 +19,8 @@ module.exports = {
 					700: "#737373",
 				},
 				white: "#EEEEEE",
+				black: "#0E0F10",
 				"bg-gray-light-transparent": "#B8B8B84D",
-				"bg-black": "#0E0F10",
 				"accent-blue": {
 					transparent: "#2679DA76",
 					900: "#2679DA",
