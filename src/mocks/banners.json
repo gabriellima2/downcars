@@ -1,5 +1,6 @@
 [
 	{
+		"id": "0",
 		"smallText": "oficina mecânica",
 		"mainText": "downcars",
 		"button": {
@@ -8,6 +9,7 @@
 		}
 	},
 	{
+		"id": "1",
 		"smallText": "especializada em carros",
 		"mainText": "downcars",
 		"button": {

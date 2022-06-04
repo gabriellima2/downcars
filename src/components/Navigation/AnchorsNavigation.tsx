@@ -9,7 +9,7 @@ export const AnchorsNavigation = () => {
 		<nav className="flex items-center">
 			<ul className="flex items-center md:gap-5 gap-20 md:flex-row flex-col">
 				{anchors.map((anchor) => (
-					<li>
+					<li key={anchor.id}>
 						<a
 							href={anchor.href}
 							onClick={() => setActiveAnchor(anchor.href)}

@@ -23,6 +23,7 @@ export const Carousel = ({ children }: CarouselProps) => {
 			<footer>
 				{children.map((element, elementIndex) => (
 					<button
+						key={Math.random()}
 						className="text-white text-[10px] sm:text-xs mx-1"
 						onClick={() => setIndexCurrentElement(elementIndex)}
 					>

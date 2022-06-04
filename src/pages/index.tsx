@@ -1,14 +1,7 @@
 import type { NextPage } from "next";
-import {
-	BsTelephone,
-	BsWhatsapp,
-	BsEnvelope,
-	BsChevronCompactDown,
-} from "react-icons/bs";
+import { BsChevronCompactDown } from "react-icons/bs";
 
 import { HeadSEO } from "../infra/HeadSEO";
-
-import { Contact } from "../components/Contacts/types";
 
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
@@ -16,24 +9,21 @@ import { QuickContacts } from "../components/Contacts";
 
 import { banners, contacts } from "../mocks";
 
-const icons = {
-	telefone: BsTelephone,
-	whatsapp: BsWhatsapp,
-	email: BsEnvelope,
-};
-
 const Home: NextPage = () => {
 	return (
 		<>
 			<HeadSEO />
 
-			<main className="flex flex-col justify-between relative bg-home-image w-full h-full bg-cover bg-no-repeat bg-center">
+			<main className="flex flex-col justify-between items-center relative bg-home-image-mobile sm:bg-home-image-desktop w-full h-full bg-cover bg-no-repeat bg-center">
 				<Header />
 
-				<section className="absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 -translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue">
+				<section className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue">
 					<Carousel>
 						{banners.map((banner) => (
-							<article className="flex flex-col items-center sm:gap-6">
+							<article
+								key={banner.id}
+								className="flex flex-col items-center sm:gap-6"
+							>
 								<div className="flex flex-col items-center">
 									<span className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
 										{banner.smallText}
@@ -68,8 +58,13 @@ const Home: NextPage = () => {
 						</div>
 						<section className="self-end order-3 md:order-2">
 							<ul className="flex items-end gap-2 flex-col md:flex-row">
-								{contacts.map((contact: Omit<Contact, "icon">) => (
-									<QuickContacts {...contact} icon={icons[contact.title]} />
+								{contacts.map((contact) => (
+									<QuickContacts
+										key={contact.id}
+										href={contact.href}
+										title={contact.title}
+										icon={contact.icon}
+									/>
 								))}
 							</ul>
 						</section>
