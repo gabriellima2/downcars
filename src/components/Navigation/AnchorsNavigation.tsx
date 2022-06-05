@@ -15,8 +15,7 @@ export const AnchorsNavigation = () => {
 							onClick={() => setActiveAnchor(anchor.href)}
 							aria-current={activeAnchor === anchor.href && "page"}
 							className={`${
-								activeAnchor === anchor.href &&
-								"bg-blue-700 hover:after:bg-transparent"
+								activeAnchor === anchor.href && "after:w-full after:bg-blue-600"
 							} rounded-md text-base md:text-sm tracking-widest font-medium uppercase py-3 px-5 relative after:bg-accent-blue-transparent after:rounded after:w-0 after:h-[2px] after:absolute after:bottom-0 after:left-0 hover:after:w-full hover:after:transition-all`}
 						>
 							{anchor.title}

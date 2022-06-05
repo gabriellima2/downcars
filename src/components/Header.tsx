@@ -1,26 +1,29 @@
 import Image from "next/image";
 import { useState } from "react";
-import { BsWhatsapp } from "react-icons/bs";
 
+import { Whatsapp } from "./Buttons/Whatsapp";
 import { AnchorsNavigation, MobileNavigation } from "./Navigation";
 
-export const Header = () => {
+interface HeaderProps {
+	isScrolling: boolean;
+}
+
+export const Header = (props: HeaderProps) => {
 	const [mobileNavigationIsActive, setMobileNavigationIsActive] =
 		useState(false);
 
 	return (
-		<header className="w-full h-28 flex justify-between items-center px-10">
+		<header
+			className={`${
+				props.isScrolling && "sticky top-0 z-50 opacity-95"
+			} relative bg-[#070707] w-full h-25 flex justify-between items-center px-10 py-5 after:w-full after:h-[1px] after:bg-gray-200-transparent after:absolute after:bottom-0 after:left-0`}
+		>
 			<a href="#home" className="flex justify-center items-center">
 				<Image src="/logo.svg" width="140px" height="50px" />
 			</a>
 			<div className="hidden md:flex md:gap-5">
 				<AnchorsNavigation />
-				<a
-					href="#"
-					className="bg-whatsapp-900 p-2 rounded-full text-white text-xl hover:bg-whatsapp-transparent hover:text-opacity-80 hover:transition-colors focus:outline-none focus:bg-transparent focus:text-whatsapp-900 focus:ring-2 focus:ring-whatsapp-900/30 focus:ring-offset-2 focus:ring-offset-whatsapp-900/5"
-				>
-					<BsWhatsapp />
-				</a>
+				{!props.isScrolling && <Whatsapp />}
 			</div>
 
 			<button

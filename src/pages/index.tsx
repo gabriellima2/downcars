@@ -1,35 +1,49 @@
 import type { NextPage } from "next";
-import { BsArrowDownRight, BsChevronCompactDown } from "react-icons/bs";
+import React, { useEffect, useState } from "react";
+import {
+	BsArrowDown,
+	BsArrowDownRight,
+	BsChevronCompactDown,
+} from "react-icons/bs";
 
 import { HeadSEO } from "../infra/HeadSEO";
 
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
 import { QuickContacts } from "../components/Contacts";
+import { PageIntroText } from "../components/PageIntroText";
 
 import { banners, contacts, services } from "../mocks";
-import { PageIntroText } from "../components/PageIntroText";
-import Image from "next/image";
-import React from "react";
+import { Whatsapp } from "../components/Buttons/Whatsapp";
 
 const Home: NextPage = () => {
+	const [isScrolling, setIsScrolling] = useState(false);
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+	}, []);
+
+	const handleScroll = () => {
+		const distanceTop = document.documentElement.scrollTop;
+
+		if (distanceTop > 0) return setIsScrolling(true);
+
+		setIsScrolling(false);
+	};
+
 	return (
 		<>
 			<HeadSEO />
+			<Header isScrolling={isScrolling} />
 
-			<main className="flex flex-col justify-between items-center relative bg-home-image-mobile sm:bg-home-image-desktop w-full h-full bg-cover bg-no-repeat bg-center">
-				<Header />
-
-				<section
-					aria-labelledby="carousel-title"
-					className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue-100"
-				>
+			<main
+				id="home"
+				className="flex flex-col justify-between relative bg-home-image-mobile sm:bg-home-image-desktop w-full h-[90vh] bg-cover bg-no-repeat bg-center"
+			>
+				<section className="flex flex-col items-center lg:items-start justify-end px-10 mb-20 h-full uppercase text-light-blue-100">
 					<Carousel carouselTitle="Informações da Oficina">
 						{banners.map((banner) => (
-							<article
-								key={banner.id}
-								className="flex flex-col items-center sm:gap-6"
-							>
+							<React.Fragment key={banner.id}>
 								<div className="flex flex-col items-center">
 									<small className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
 										{banner.smallText}
@@ -45,7 +59,7 @@ const Home: NextPage = () => {
 									{banner.button.text}
 									<BsArrowDownRight className="bg-blue-800 p-1 sm:p-2 w-7 sm:w-10 h-7 sm:h-10 rounded-md" />
 								</a>
-							</article>
+							</React.Fragment>
 						))}
 					</Carousel>
 				</section>
@@ -79,40 +93,65 @@ const Home: NextPage = () => {
 				</footer>
 			</main>
 
-			<section
-				id="services"
-				className="sm:bg-services-image bg-black text-light-blue-100"
-			>
-				<PageIntroText
-					attr={{
-						small: "serviços",
-						title: "Transparência e Confiabilidade define nossos serviços",
-						subtitle:
-							"Esses são alguns de nossos principais serviços, para mais informações entre em contato!",
-					}}
-				/>
+			<div>
+				{isScrolling && (
+					<span className="flex fixed bottom-8 right-8">
+						<Whatsapp />
+					</span>
+				)}
 
-				<section className="h-[100vh] flex flex-col items-center">
-					<ul className="flex md:flex-row flex-col items-center gap-20">
-						{services.map((service) => (
-							<li
-								key={service.id}
-								className="flex flex-col items-center gap-3 text-white text-center"
-							>
-								<i className="text-4xl">
-									{React.createElement(service.icon, null)}
-								</i>
-								<h1 className="text-xl font-semibold tracking-wider">
-									{service.title}
-								</h1>
-								<p className="max-w-[370px] text-base font-medium text-gray-100">
-									{service.description}
-								</p>
-							</li>
-						))}
-					</ul>
+				<section
+					id="services"
+					className="h-auto md:bg-services-image bg-black text-light-blue-100 px-2"
+				>
+					<PageIntroText
+						attr={{
+							small: "serviços",
+							title: "Transparência e Confiabilidade define nossos serviços",
+							subtitle:
+								"Esses são alguns de nossos principais serviços, para mais informações entre em contato!",
+						}}
+					/>
+
+					<section className="h-auto flex flex-col items-center line--detail">
+						<ul className="min-h-[300px] flex md:flex-row flex-col items-center gap-20 px-5">
+							{services.map((service) => (
+								<li
+									key={service.id}
+									tabIndex={0}
+									className={`${
+										service.id !== 1 && "self-start"
+									} flex flex-col items-center gap-3 text-white text-center`}
+								>
+									<i className="text-3xl sm:text-4xl">
+										{React.createElement(service.icon, null)}
+									</i>
+									<h1 className="text-base sm:text-xl font-semibold tracking-wider">
+										{service.title}
+									</h1>
+									<p className="max-w-[300px] text-sm sm:text-base font-medium text-gray-100">
+										{service.description}
+									</p>
+								</li>
+							))}
+						</ul>
+					</section>
+
+					<footer className="mt-10 sm:mt-0 text-center flex items-center flex-col gap-3 p-5">
+						<p className="flex flex-col text-sm sm:text-base">
+							É o que precisa?
+							<strong>Peça um orçamento!</strong>
+						</p>
+						<i className="text-xl sm:text-2xl">
+							<BsArrowDown />
+						</i>
+					</footer>
 				</section>
-			</section>
+
+				<section id="contacts">
+					<h1>contacts</h1>
+				</section>
+			</div>
 		</>
 	);
 };

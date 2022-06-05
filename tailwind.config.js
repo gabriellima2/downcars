@@ -8,7 +8,7 @@ module.exports = {
 			backgroundImage: {
 				"home-image-desktop": "url('../../public/bg-home-desktop.jpg')",
 				"home-image-mobile": "url('../../public/bg-home-mobile.jpg')",
-				"services-image": "url('../../public/services-image.svg')",
+				"services-image": "url('../../public/services-image.jpg')",
 			},
 			colors: {
 				"light-blue": {
@@ -47,6 +47,16 @@ module.exports = {
 			lg: "1024px",
 			xl: "1280px",
 			"2xl": "1536px",
+		},
+
+		gridTemplateRows: {
+			1: "repeat(1, minmax(0, 1fr))",
+			2: "repeat(2, minmax(0, 1fr))",
+			3: "140px 2fr 200px",
+			4: "repeat(4, minmax(0, 1fr))",
+			5: "repeat(5, minmax(0, 1fr))",
+			6: "repeat(6, minmax(0, 1fr))",
+			none: "none",
 		},
 	},
 	plugins: [],

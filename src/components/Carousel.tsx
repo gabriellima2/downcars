@@ -35,7 +35,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 	};
 
 	return (
-		<>
+		<div aria-labelledby="carousel-title">
 			<h1 id="carousel-title" className="hidden">
 				{carouselTitle}
 			</h1>
@@ -49,6 +49,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 					onMouseLeave={() => handleSlider("start")}
 					onFocus={() => handleSlider("stop")}
 					onBlur={() => handleSlider("start")}
+					className="flex flex-col items-center gap-6"
 				>
 					{children[indexCurrentElement]}
 				</li>
@@ -90,6 +91,6 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 					</button>
 				</footer>
 			</ul>
-		</>
+		</div>
 	);
 };
