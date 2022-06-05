@@ -102,7 +102,7 @@ const Home: NextPage = () => {
 
 				<section
 					id="services"
-					className="h-auto md:bg-services-image bg-black text-light-blue-100 px-2"
+					className="h-auto md:bg-services-image bg-cover bg-center bg-no-repeat bg-black text-light-blue-100 px-2"
 				>
 					<PageIntroText
 						attr={{
