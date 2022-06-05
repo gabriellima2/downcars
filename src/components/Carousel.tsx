@@ -20,7 +20,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 	useEffect(() => {
 		if (isStopped) return clearInterval(rangeSlider);
 
-		rangeSlider = setInterval(moveCarousel, 1000);
+		rangeSlider = setInterval(moveCarousel, 4000);
 
 		return () => clearInterval(rangeSlider);
 	}, [isStopped]);

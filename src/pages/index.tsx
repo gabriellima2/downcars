@@ -7,8 +7,10 @@ import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
 import { QuickContacts } from "../components/Contacts";
 
-import { banners, contacts } from "../mocks";
+import { banners, contacts, services } from "../mocks";
 import { PageIntroText } from "../components/PageIntroText";
+import Image from "next/image";
+import React from "react";
 
 const Home: NextPage = () => {
 	return (
@@ -20,7 +22,7 @@ const Home: NextPage = () => {
 
 				<section
 					aria-labelledby="carousel-title"
-					className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue"
+					className="static sm:absolute bottom-56 md:bottom-52 left-1/2 md:left-[8%] md:-translate-x-0 sm:-translate-x-1/2 flex flex-col items-center gap-2 uppercase text-light-blue-100"
 				>
 					<Carousel carouselTitle="Informações da Oficina">
 						{banners.map((banner) => (
@@ -32,7 +34,7 @@ const Home: NextPage = () => {
 									<small className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
 										{banner.smallText}
 									</small>
-									<h1 className="text-[3.4rem] sm:text-8xl md:text-[7rem] font-medium text-transparent bg-clip-text bg-gradient-to-t from-[#0C2338]/5 via-light-blue/50 to-light-blue">
+									<h1 className="text-[3.4rem] sm:text-8xl md:text-[7rem] font-medium text-transparent bg-clip-text bg-gradient-to-t from-[#0C2338]/5 via-light-blue-100/50 to-light-blue-100">
 										{banner.mainText}
 									</h1>
 								</div>
@@ -53,7 +55,7 @@ const Home: NextPage = () => {
 						<i className="absolute left-1/2 md:static text-white text-4xl animate-bounce order-3 md:order-1 self-end">
 							<BsChevronCompactDown />
 						</i>
-						<div className="text-light-blue tracking-wider self-end order-2">
+						<div className="text-light-blue-100 tracking-wider self-end order-2">
 							<h1 className="text-2xl sm:text-3xl font-bold">
 								+10<span className="uppercase text-sm sm:text-base">anos</span>
 							</h1>
@@ -77,7 +79,10 @@ const Home: NextPage = () => {
 				</footer>
 			</main>
 
-			<section className="bg-black text-light-blue">
+			<section
+				id="services"
+				className="sm:bg-services-image bg-black text-light-blue-100"
+			>
 				<PageIntroText
 					attr={{
 						small: "serviços",
@@ -86,6 +91,27 @@ const Home: NextPage = () => {
 							"Esses são alguns de nossos principais serviços, para mais informações entre em contato!",
 					}}
 				/>
+
+				<section className="h-[100vh] flex flex-col items-center">
+					<ul className="flex md:flex-row flex-col items-center gap-20">
+						{services.map((service) => (
+							<li
+								key={service.id}
+								className="flex flex-col items-center gap-3 text-white text-center"
+							>
+								<i className="text-4xl">
+									{React.createElement(service.icon, null)}
+								</i>
+								<h1 className="text-xl font-semibold tracking-wider">
+									{service.title}
+								</h1>
+								<p className="max-w-[370px] text-base font-medium text-gray-100">
+									{service.description}
+								</p>
+							</li>
+						))}
+					</ul>
+				</section>
 			</section>
 		</>
 	);

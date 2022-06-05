@@ -15,7 +15,7 @@ html, body {
 }
 
 a, button {
-	@apply text-light-blue font-poppins;
+	@apply text-light-blue-100 font-poppins;
 }
 
 .outline--focus {

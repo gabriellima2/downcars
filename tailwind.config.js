@@ -8,11 +8,16 @@ module.exports = {
 			backgroundImage: {
 				"home-image-desktop": "url('../../public/bg-home-desktop.jpg')",
 				"home-image-mobile": "url('../../public/bg-home-mobile.jpg')",
+				"services-image": "url('../../public/services-image.svg')",
 			},
 			colors: {
-				"light-blue": "#DEECF5",
+				"light-blue": {
+					100: "#DEECF5",
+					400: "#BAE1F6",
+				},
 				gray: {
 					100: "#D7D7D7A6",
+					200: "#B8B8B8",
 					"200-transparent": "#B8B8B833",
 					300: "#B7B7B7",
 					500: "#959595",
