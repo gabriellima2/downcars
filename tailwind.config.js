@@ -9,6 +9,8 @@ module.exports = {
 				"home-image-desktop": "url('../../public/bg-home-desktop.jpg')",
 				"home-image-mobile": "url('../../public/bg-home-mobile.jpg')",
 				"services-image": "url('../../public/services-image.jpg')",
+				"bg-contacts-desktop": "url('../../public/bg-contacts-desktop.svg')",
+				"bg-contacts-mobile": "url('../../public/bg-contacts-mobile.svg')",
 			},
 			colors: {
 				"light-blue": {

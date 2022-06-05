@@ -10,7 +10,7 @@ import { HeadSEO } from "../infra/HeadSEO";
 
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
-import { QuickContacts } from "../components/Contacts";
+import { FullContacts, QuickContacts } from "../components/Contacts";
 import { PageIntroText } from "../components/PageIntroText";
 
 import { banners, contacts, services } from "../mocks";
@@ -148,8 +148,24 @@ const Home: NextPage = () => {
 					</footer>
 				</section>
 
-				<section id="contacts">
-					<h1>contacts</h1>
+				<section
+					id="contacts"
+					className="bg-bg-contacts-desktop bg-cover bg-center bg-no-repeat"
+				>
+					<PageIntroText
+						attr={{
+							small: "contatos",
+							title: "Entre em contato conosco e peça um orçamento",
+						}}
+					/>
+
+					<section className="flex flex-col items-center px-14 pb-10">
+						<ul className="w-fit flex items-center gap-32">
+							{contacts.map((contact) => (
+								<FullContacts {...contact} key={contact.id} />
+							))}
+						</ul>
+					</section>
 				</section>
 			</div>
 		</>

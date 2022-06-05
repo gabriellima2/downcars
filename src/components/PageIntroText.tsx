@@ -9,7 +9,7 @@ export const PageIntroText = ({ attr }: PageIntroTextProps) => (
 		<small className="text-light-blue-400 capitalize text-xs sm:text-xl font-medium">
 			{attr.small}
 		</small>
-		<h1 className="max-w-lg text-base sm:text-3xl font-semibold">
+		<h1 className="max-w-lg text-base sm:text-3xl font-semibold text-white">
 			{attr.title}
 		</h1>
 		<p className="max-w-md text-xs sm:text-lg tracking-normal text-gray-200/70 font-medium">
