@@ -29,3 +29,7 @@ a, button {
 .line--detail {
 	@apply after:w-1/12 after:max-w-[100px] after:min-w-[50px] after:h-0.5 after:bg-gray-200-transparent after:my-6;
 }
+
+.border--detail {
+	@apply  border-t-[1px] border-gray-200-transparent
+}

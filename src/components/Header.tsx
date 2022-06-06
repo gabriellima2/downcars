@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { Whatsapp } from "./Buttons/Whatsapp";
+import { WhatsappButton } from "./Buttons/WhatsappButton";
 import { AnchorsNavigation, MobileNavigation } from "./Navigation";
 
 interface HeaderProps {
@@ -23,7 +23,7 @@ export const Header = (props: HeaderProps) => {
 			</a>
 			<div className="hidden md:flex md:gap-5">
 				<AnchorsNavigation />
-				{!props.isScrolling && <Whatsapp />}
+				{!props.isScrolling && <WhatsappButton />}
 			</div>
 
 			<button

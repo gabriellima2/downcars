@@ -14,7 +14,8 @@ import { FullContacts, QuickContacts } from "../components/Contacts";
 import { PageIntroText } from "../components/PageIntroText";
 
 import { banners, contacts, services } from "../mocks";
-import { Whatsapp } from "../components/Buttons/Whatsapp";
+import { WhatsappButton } from "../components/Buttons/WhatsappButton";
+import { Footer } from "../components/Footer";
 
 const Home: NextPage = () => {
 	const [isScrolling, setIsScrolling] = useState(false);
@@ -96,7 +97,7 @@ const Home: NextPage = () => {
 			<div>
 				{isScrolling && (
 					<span className="flex fixed bottom-8 right-8">
-						<Whatsapp />
+						<WhatsappButton />
 					</span>
 				)}
 
@@ -168,6 +169,8 @@ const Home: NextPage = () => {
 					</section>
 				</section>
 			</div>
+
+			<Footer />
 		</>
 	);
 };
