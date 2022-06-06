@@ -5,7 +5,7 @@ import { BackToTopButton } from "./Buttons/BackToTopButton";
 const CURRENT_YEAR = new Date().getFullYear();
 
 export const Footer = () => (
-	<footer className="flex flex-col items-center px-6 pt-10 pb-5 text-gray-100/40 bg-black border--detail">
+	<footer className="flex flex-col items-center px-6 pt-6 pb-5 text-gray-100/40 bg-black border--detail">
 		<div className="w-full flex justify-between pb-3 gap-4 flex-wrap">
 			<section className="flex flex-col items-start">
 				<Image src="/logo.svg" width="160px" height="40px" />

@@ -39,9 +39,9 @@ const Home: NextPage = () => {
 
 			<main
 				id="home"
-				className="flex flex-col justify-between relative bg-home-image-mobile sm:bg-home-image-desktop w-full h-[90vh] bg-cover bg-no-repeat bg-center"
+				className="flex flex-col justify-between bg-home-image-mobile sm:bg-home-image-desktop w-full h-[90vh] bg-cover bg-no-repeat bg-center"
 			>
-				<section className="flex flex-col items-center lg:items-start justify-end px-10 mb-20 h-full uppercase text-light-blue-100">
+				<section className="flex flex-col items-center lg:items-start justify-end lg:pl-32 mb-20 h-full uppercase text-light-blue-400">
 					<Carousel carouselTitle="Informações da Oficina">
 						{banners.map((banner) => (
 							<React.Fragment key={banner.id}>
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 									<small className="text-lg sm:text-2xl md:text-3xl font-light tracking-wider -m-5 sm:-m-3 md:-m-2">
 										{banner.smallText}
 									</small>
-									<h1 className="text-[3.4rem] sm:text-8xl md:text-[7rem] font-medium text-transparent bg-clip-text bg-gradient-to-t from-[#0C2338]/5 via-light-blue-100/50 to-light-blue-100">
+									<h1 className="text-[3.4rem] sm:text-8xl md:text-[7rem] font-medium text-transparent bg-clip-text bg-gradient-to-t from-[#000000]/5 via-blue-400/40 to-light-blue-400">
 										{banner.mainText}
 									</h1>
 								</div>
