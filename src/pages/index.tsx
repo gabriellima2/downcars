@@ -10,12 +10,12 @@ import { HeadSEO } from "../infra/HeadSEO";
 
 import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
-import { FullContacts, QuickContacts } from "../components/Contacts";
 import { PageIntroText } from "../components/PageIntroText";
-
-import { banners, contacts, services } from "../mocks";
+import { FullContacts, QuickContacts } from "../components/Contacts";
 import { WhatsappButton } from "../components/Buttons/WhatsappButton";
 import { Footer } from "../components/Footer";
+
+import { banners, contacts, services } from "../mocks";
 
 const Home: NextPage = () => {
 	const [isScrolling, setIsScrolling] = useState(false);
@@ -54,6 +54,7 @@ const Home: NextPage = () => {
 									</h1>
 								</div>
 								<a
+									title={`Ir para ${banner.button.text}`}
 									href={banner.button.anchor}
 									className="w-fit flex items-center gap-2 sm:gap-4 bg-blue-700 rounded-md font-bold py-2 px-4 sm:px-6 text-xs sm:text-[1rem] tracking-widest outline--focus hover:bg-blue-800 hover:opacity-90 hover:transition-all"
 								>
