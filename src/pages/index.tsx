@@ -150,7 +150,7 @@ const Home: NextPage = () => {
 
 				<section
 					id="contacts"
-					className="bg-bg-contacts-desktop bg-cover bg-center bg-no-repeat"
+					className="bg-contacts-mobile md:bg-contacts-desktop bg-cover bg-center bg-no-repeat"
 				>
 					<PageIntroText
 						attr={{
@@ -160,7 +160,7 @@ const Home: NextPage = () => {
 					/>
 
 					<section className="flex flex-col items-center px-14 pb-10">
-						<ul className="w-fit flex items-center gap-32">
+						<ul className="w-full sm:w-fit flex items-center flex-col sm:flex-row gap-10 md:gap-32 sm:gap-20">
 							{contacts.map((contact) => (
 								<FullContacts {...contact} key={contact.id} />
 							))}
