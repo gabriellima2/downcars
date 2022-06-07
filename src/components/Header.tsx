@@ -16,7 +16,12 @@ export const Header = (props: HeaderProps) => {
 			} relative bg-[#070707] w-full h-25 flex justify-between items-center px-10 py-5 after:w-full after:h-[1px] after:bg-gray-200-transparent after:absolute after:bottom-0 after:left-0`}
 		>
 			<a href="#home" className="flex justify-center items-center">
-				<Image src="/logo.svg" width="140px" height="50px" />
+				<Image
+					src="/logo.svg"
+					alt="Logo DownCars com cor branca e icone de ferramenta"
+					width="140px"
+					height="50px"
+				/>
 			</a>
 			<div className="hidden md:flex md:gap-5">
 				<AnchorsNavigation />

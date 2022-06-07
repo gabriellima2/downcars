@@ -4,8 +4,8 @@ export const HeadSEO = () => (
 	<Head>
 		<meta
 			name="description"
-			content="Oficina mecânica DownCars especializada em manutenção de carros."
+			content="Oficina Mecânica de Guarulhos. Está com problemas com seu veículo? Entre em contatos conosco."
 		/>
-		<title>DownCars</title>
+		<title>Oficina Mecânica DownCars</title>
 	</Head>
 );
