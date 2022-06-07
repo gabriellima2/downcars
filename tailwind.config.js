@@ -60,6 +60,40 @@ module.exports = {
 			6: "repeat(6, minmax(0, 1fr))",
 			none: "none",
 		},
+
+		animation: {
+			none: "none",
+			pulse: "pulse 1s linear infinite",
+			bounce: "bounce 1s infinite",
+		},
+
+		keyframes: {
+			pulse: {
+				"0%": {
+					"box-shadow": "0 0 0 0px #0E49CFB3",
+					transform: "scale(1)",
+				},
+				"50%": {
+					"box-shadow": "0 0 0 15px #0E49CF4D",
+					transform: "scale(1)",
+				},
+				"100%": {
+					"box-shadow": "0 0 0 25px #0E49CF1A",
+					transform: "scale(1)",
+				},
+			},
+
+			bounce: {
+				"0%, 100%": {
+					transform: "translateY(-25%)",
+					"animation-timing-function": "cubic-bezier(0.8, 0, 1, 1)",
+				},
+				"50%": {
+					transform: "translateY(0)",
+					"animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
+				},
+			},
+		},
 	},
 	plugins: [],
 };
