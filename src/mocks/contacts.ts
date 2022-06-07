@@ -4,8 +4,8 @@ export default [
 	{
 		id: 0,
 		title: "telefone",
-		value: "+55 (11)1397427-7238",
-		href: "tel:+551113974277238",
+		value: "+55 (13)97427-7238",
+		href: "tel:+5513974277238",
 		icon: BsTelephone,
 	},
 	{
