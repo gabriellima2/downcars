@@ -10,6 +10,7 @@ export const FullContacts = (props: FullContactsProps) => (
 		className="relative hover:bg-black/20 py-2 px-1 rounded-lg after:w-0 after:h-[2px] after:bg-gray-200-transparent after:rounded-full after:absolute after:bottom-0 after:left-0 hover:after:w-full hover:after:transition-all"
 	>
 		<a
+			target="_blank"
 			href={props.href}
 			className="flex flex-col items-center gap-4 text-white px-2 py-4"
 		>

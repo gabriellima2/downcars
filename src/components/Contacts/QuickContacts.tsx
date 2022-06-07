@@ -7,6 +7,7 @@ type QuickContactsProps = Pick<Contact, "href" | "title" | "icon">;
 export const QuickContacts = (props: QuickContactsProps) => (
 	<li className="p-2">
 		<a
+			target="_blank"
 			href={props.href}
 			title={`Link para contato de ${props.title}`}
 			className="hover:text-light-blue-400"
