@@ -1,21 +1,18 @@
 import Image from "next/image";
-import { useState } from "react";
 
 import { WhatsappButton } from "./Buttons/WhatsappButton";
-import { AnchorsNavigation, MobileNavigation } from "./Navigation";
+import { AnchorsNavigation } from "./Navigation";
 
 interface HeaderProps {
 	isScrolling: boolean;
+	activateMobileNav: () => void;
 }
 
 export const Header = (props: HeaderProps) => {
-	const [mobileNavigationIsActive, setMobileNavigationIsActive] =
-		useState(false);
-
 	return (
 		<header
 			className={`${
-				props.isScrolling && "sticky top-0 z-50 opacity-95"
+				props.isScrolling && "sticky top-0 z-50 opacity-90"
 			} relative bg-[#070707] w-full h-25 flex justify-between items-center px-10 py-5 after:w-full after:h-[1px] after:bg-gray-200-transparent after:absolute after:bottom-0 after:left-0`}
 		>
 			<a href="#home" className="flex justify-center items-center">
@@ -26,19 +23,9 @@ export const Header = (props: HeaderProps) => {
 				{!props.isScrolling && <WhatsappButton />}
 			</div>
 
-			<button
-				className="md:hidden"
-				onClick={() => setMobileNavigationIsActive(true)}
-			>
+			<button className="md:hidden" onClick={props.activateMobileNav}>
 				<Image src="/menu.svg" width="40px" height="40px" />
 			</button>
-
-			{mobileNavigationIsActive && (
-				<MobileNavigation
-					isActive={mobileNavigationIsActive}
-					disableSidebar={() => setMobileNavigationIsActive(false)}
-				/>
-			)}
 		</header>
 	);
 };

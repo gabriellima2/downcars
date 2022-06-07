@@ -16,9 +16,11 @@ import { WhatsappButton } from "../components/Buttons/WhatsappButton";
 import { Footer } from "../components/Footer";
 
 import { banners, contacts, services } from "../mocks";
+import { MobileNavigation } from "../components/Navigation";
 
 const Home: NextPage = () => {
 	const [isScrolling, setIsScrolling] = useState(false);
+	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
@@ -35,7 +37,17 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<HeadSEO />
-			<Header isScrolling={isScrolling} />
+			<Header
+				isScrolling={isScrolling}
+				activateMobileNav={() => setMobileNavIsActive(true)}
+			/>
+
+			{mobileNavIsActive && (
+				<MobileNavigation
+					isActive={mobileNavIsActive}
+					disableSidebar={() => setMobileNavIsActive(false)}
+				/>
+			)}
 
 			<main
 				id="home"
