@@ -12,7 +12,7 @@ export const BackToTopButton = () => {
 			title="Voltar para o topo"
 			aria-label="Voltar para o topo"
 			onClick={toTop}
-			className="h-fit bg-gray-200-transparent/10 px-2 py-1 text-3xl rounded-md hover:opacity-80"
+			className="h-fit bg-gray-200-transparent/10 px-1 py-1 text-3xl rounded-md hover:opacity-80"
 		>
 			<BsChevronCompactUp />
 		</button>
