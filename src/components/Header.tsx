@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { scrollTop } from "../utils/scrollTop";
 
 import { WhatsappButton } from "./Buttons/WhatsappButton";
 import { AnchorsNavigation } from "./Navigation";
@@ -28,7 +29,13 @@ export const Header = (props: HeaderProps) => {
 				{!props.isScrolling && <WhatsappButton />}
 			</div>
 
-			<button className="md:hidden" onClick={props.activateMobileNav}>
+			<button
+				className="md:hidden"
+				onClick={() => {
+					scrollTop();
+					props.activateMobileNav();
+				}}
+			>
 				<Image src="/menu.svg" width="40px" height="40px" />
 			</button>
 		</header>
