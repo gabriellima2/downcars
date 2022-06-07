@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	BsArrowDown,
 	BsArrowDownRight,
@@ -17,10 +17,13 @@ import { Footer } from "../components/Footer";
 
 import { banners, contacts, services } from "../mocks";
 import { MobileNavigation } from "../components/Navigation";
+import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
 
 const Home: NextPage = () => {
 	const [isScrolling, setIsScrolling] = useState(false);
-	const [mobileNavIsActive, setMobileNavIsActive] = useState(false);
+	const { mobileNavIsActive, activateMobileNav, disableMobileNav } = useContext(
+		MobileNavigationContext
+	);
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
@@ -37,15 +40,12 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<HeadSEO />
-			<Header
-				isScrolling={isScrolling}
-				activateMobileNav={() => setMobileNavIsActive(true)}
-			/>
+			<Header isScrolling={isScrolling} activateMobileNav={activateMobileNav} />
 
 			{mobileNavIsActive && (
 				<MobileNavigation
+					disableSidebar={disableMobileNav}
 					isActive={mobileNavIsActive}
-					disableSidebar={() => setMobileNavIsActive(false)}
 				/>
 			)}
 
