@@ -109,7 +109,7 @@ const Home: NextPage = () => {
 					<PageIntroText
 						attr={{
 							small: "serviços",
-							title: "Transparência e Confiabilidade define nossos serviços",
+							title: "Transparência e Confiança define nossos serviços",
 							subtitle:
 								"Esses são alguns de nossos principais serviços, para mais informações entre em contato!",
 						}}
