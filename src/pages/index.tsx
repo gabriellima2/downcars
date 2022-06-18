@@ -13,11 +13,11 @@ import { Carousel } from "../components/Carousel";
 import { PageIntroText } from "../components/PageIntroText";
 import { FullContacts, QuickContacts } from "../components/Contacts";
 import { WhatsappButton } from "../components/Buttons/WhatsappButton";
+import { MobileNavigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 
-import { banners, contacts, services } from "../mocks";
-import { MobileNavigation } from "../components/Navigation";
 import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
+import { banners, contacts, services } from "../mocks";
 
 const Home: NextPage = () => {
 	const [isScrolling, setIsScrolling] = useState(false);
