@@ -46,4 +46,4 @@ $ yarn dev / npm run dev
 4. O servidor será aberto em http://localhost:3000
 ```
 
-<p align="center">Projeto com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
+<p align="center">Projeto feito com 💙 por <a href="https://www.linkedin.com/in/gabriel-lima-860612236">Gabriel Lima</a></p>
