@@ -33,7 +33,7 @@ export const Header = ({ activateMobileNav }: HeaderProps) => {
 			</div>
 
 			{isScrolling && (
-				<span className="flex fixed bottom-8 right-8">
+				<span className="flex fixed bottom-6 right-6">
 					<WhatsappButton />
 				</span>
 			)}
