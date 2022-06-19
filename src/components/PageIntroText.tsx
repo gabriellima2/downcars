@@ -1,4 +1,4 @@
-import { Text } from "../types/components";
+import { Text } from ".";
 
 interface PageIntroTextProps {
 	attr: Text;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Contact } from "../../types/components";
+import { Contact } from "..";
 
 type QuickContactsProps = Pick<Contact, "href" | "title" | "icon">;
 
