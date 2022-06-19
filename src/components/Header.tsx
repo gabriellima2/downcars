@@ -1,19 +1,22 @@
 import Image from "next/image";
 
+import { useScroll } from "../hooks/useScroll";
+
 import { WhatsappButton } from "./Buttons/WhatsappButton";
 import { AnchorsNavigation } from "./Navigation";
 
 interface HeaderProps {
-	isScrolling: boolean;
 	activateMobileNav: () => void;
 }
 
-export const Header = ({ isScrolling, activateMobileNav }: HeaderProps) => {
+export const Header = ({ activateMobileNav }: HeaderProps) => {
+	const { isScrolling, scrollDirection } = useScroll();
+
 	return (
 		<header
 			className={`${
-				isScrolling && "sticky top-0 z-50 opacity-90"
-			} relative bg-[#070707] w-full h-25 flex justify-between items-center px-10 py-5 after:w-full after:h-[1px] after:bg-gray-200-transparent after:absolute after:bottom-0 after:left-0`}
+				scrollDirection === "down" ? "top-0" : "-top-24"
+			} bg-[#070707] sticky top-0 w-full h-25 transition-all duration-500 flex justify-between items-center px-10 py-5 after:w-full after:h-[1px] after:bg-gray-200-transparent after:absolute after:bottom-0 after:left-0`}
 		>
 			<a href="#home" className="flex justify-center items-center">
 				<Image
@@ -25,7 +28,13 @@ export const Header = ({ isScrolling, activateMobileNav }: HeaderProps) => {
 			</a>
 			<div className="hidden md:flex md:gap-5">
 				<AnchorsNavigation />
-				{!isScrolling && <WhatsappButton />}
+				{isScrolling ? (
+					<span className="flex fixed bottom-8 right-8">
+						<WhatsappButton />
+					</span>
+				) : (
+					<WhatsappButton />
+				)}
 			</div>
 
 			<button className="md:hidden" onClick={activateMobileNav}>

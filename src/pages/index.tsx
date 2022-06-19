@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
 	BsArrowDown,
 	BsArrowDownRight,
@@ -12,7 +12,6 @@ import { Header } from "../components/Header";
 import { Carousel } from "../components/Carousel";
 import { PageIntroText } from "../components/PageIntroText";
 import { FullContacts, QuickContacts } from "../components/Contacts";
-import { WhatsappButton } from "../components/Buttons/WhatsappButton";
 import { MobileNavigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 
@@ -20,27 +19,14 @@ import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
 import { banners, contacts, services } from "../mocks";
 
 const Home: NextPage = () => {
-	const [isScrolling, setIsScrolling] = useState(false);
 	const { mobileNavIsActive, activateMobileNav, disableMobileNav } = useContext(
 		MobileNavigationContext
 	);
 
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-	}, []);
-
-	const handleScroll = () => {
-		const distanceTop = document.documentElement.scrollTop;
-
-		if (distanceTop > 0) return setIsScrolling(true);
-
-		setIsScrolling(false);
-	};
-
 	return (
 		<>
 			<HeadSEO />
-			<Header isScrolling={isScrolling} activateMobileNav={activateMobileNav} />
+			<Header activateMobileNav={activateMobileNav} />
 
 			{mobileNavIsActive && (
 				<MobileNavigation
@@ -108,12 +94,6 @@ const Home: NextPage = () => {
 			</main>
 
 			<div>
-				{isScrolling && (
-					<span className="flex fixed bottom-8 right-8">
-						<WhatsappButton />
-					</span>
-				)}
-
 				<section
 					id="services"
 					className="h-auto md:bg-services-image bg-cover bg-center bg-no-repeat bg-black text-light-blue-100 px-2"
