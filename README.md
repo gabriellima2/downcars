@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="DownCars logo" src="./public/logo.svg" />
+    <img alt="DownCars logo" src="./public/logo-github-dwc.svg" />
     <br>
     Oficina Mecânica DownCars
 </h1>
@@ -13,6 +13,7 @@
 <p align="center"><a href="https://downcars-next.netlify.app/">Acessar Projeto</a></p>
 
 # Tecnologias
+
 <p>Foram usadas as seguintes tecnologias:</p>
 
 - [NextJS](https://nextjs.org/)
@@ -23,9 +24,11 @@
 <p>São tecnologias que gosto e que estava precisando colocar em prática! E claro, se o projeto crescer irá facilitar muito.</p>
 
 # Objetivos
+
 Decidi fazer esse projeto para a oficina do meu pai, pois queria fazer uma aplicação útil que resolvesse problemas, aprender novas tecnologias e sentir um gostinho de fazer um trabalho real e bem planejado.
 
 # Aprendizados
+
 - Consegui usufruir muito do TailwindCSS, uma tecnologia que queria muito usar;
 - Planejar meus projetos, pensar em Design, Prototipagem, Tecnologias e Estrutura de arquivos antes de fazer o código;
 - Sempre pensar em quem pode usar sua aplicação, então deixar acessível para todos!;
