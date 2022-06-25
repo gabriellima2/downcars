@@ -1,5 +1,7 @@
 import { useContext } from "react";
+
 import { MobileNavigationContext } from "../../contexts/MobileNavigationContext";
+
 import { anchors } from "../../mocks";
 
 export const AnchorsNavigation = () => {

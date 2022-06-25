@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { AnchorsNavigation } from ".";
 
-interface NavigationMobileProps {
+interface MobileNavigationProps {
 	isActive: boolean;
 	disableSidebar: () => void;
 }
@@ -12,7 +12,7 @@ interface NavigationMobileProps {
 export const MobileNavigation = ({
 	isActive,
 	disableSidebar,
-}: NavigationMobileProps) => {
+}: MobileNavigationProps) => {
 	return (
 		<Dialog open={isActive} onClose={disableSidebar} className="md:hidden z-50">
 			<Dialog.Panel className="w-full max-w-[70vw] sm:max-w-[300px] h-screen bg-black/95 absolute right-0 top-0 z-50 flex flex-col items-center justify-center">
