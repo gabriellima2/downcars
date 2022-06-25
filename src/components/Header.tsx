@@ -1,15 +1,12 @@
 import Image from "next/image";
-import { useContext } from "react";
 
 import { useScroll } from "../hooks/useScroll";
 
+import { OpenMobileNavigationButton } from "./Buttons/OpenMobileNavigationButton";
 import { WhatsappButton } from "./Buttons/WhatsappButton";
 import { AnchorsNavigation } from "./Navigation";
 
-import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
-
 export const Header = () => {
-	const { activateMobileNav } = useContext(MobileNavigationContext);
 	const { isScrolling, scrollDirection } = useScroll();
 
 	return (
@@ -38,9 +35,7 @@ export const Header = () => {
 				</span>
 			)}
 
-			<button className="md:hidden" onClick={activateMobileNav}>
-				<Image src="/menu.svg" width="40px" height="40px" />
-			</button>
+			<OpenMobileNavigationButton />
 		</header>
 	);
 };
