@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useContext } from "react";
+import React from "react";
 import {
 	BsArrowDown,
 	BsArrowDownRight,
@@ -15,25 +15,15 @@ import { FullContacts, QuickContacts } from "../components/Contacts";
 import { MobileNavigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 
-import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
 import { banners, contacts, services } from "../mocks";
 
 const Home: NextPage = () => {
-	const { mobileNavIsActive, activateMobileNav, disableMobileNav } = useContext(
-		MobileNavigationContext
-	);
-
 	return (
 		<>
 			<HeadSEO />
-			<Header activateMobileNav={activateMobileNav} />
+			<Header />
 
-			{mobileNavIsActive && (
-				<MobileNavigation
-					disableSidebar={disableMobileNav}
-					isActive={mobileNavIsActive}
-				/>
-			)}
+			<MobileNavigation />
 
 			<main
 				id="home"

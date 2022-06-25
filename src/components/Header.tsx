@@ -1,15 +1,15 @@
 import Image from "next/image";
+import { useContext } from "react";
 
 import { useScroll } from "../hooks/useScroll";
 
 import { WhatsappButton } from "./Buttons/WhatsappButton";
 import { AnchorsNavigation } from "./Navigation";
 
-interface HeaderProps {
-	activateMobileNav: () => void;
-}
+import { MobileNavigationContext } from "../contexts/MobileNavigationContext";
 
-export const Header = ({ activateMobileNav }: HeaderProps) => {
+export const Header = () => {
+	const { activateMobileNav } = useContext(MobileNavigationContext);
 	const { isScrolling, scrollDirection } = useScroll();
 
 	return (
