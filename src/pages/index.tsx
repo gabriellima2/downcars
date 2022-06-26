@@ -15,7 +15,7 @@ import { FullContacts, QuickContacts } from "../components/Contacts";
 import { MobileNavigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
 
-import { banners, contacts, services } from "../mocks";
+import { banners, contacts, services } from "../assets";
 
 const Home: NextPage = () => {
 	return (

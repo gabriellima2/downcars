@@ -1,6 +1,6 @@
 import { useMobileNavigationContext } from "../../hooks/useMobileNavigationContext";
 
-import { anchors } from "../../mocks";
+import { anchors } from "../../assets";
 
 export const AnchorsNavigation = () => {
 	const { mobileNavIsActive, disableMobileNav } = useMobileNavigationContext();

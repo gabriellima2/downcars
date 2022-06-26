@@ -1,4 +1,4 @@
-import { contacts } from "../mocks/";
+import { contacts } from "../assets";
 
 interface Text {
 	small: string;
