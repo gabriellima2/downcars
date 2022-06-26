@@ -1,13 +1,9 @@
-import { useContext } from "react";
-
-import { MobileNavigationContext } from "../../contexts/MobileNavigationContext";
+import { useMobileNavigationContext } from "../../hooks/useMobileNavigationContext";
 
 import { anchors } from "../../mocks";
 
 export const AnchorsNavigation = () => {
-	const { mobileNavIsActive, disableMobileNav } = useContext(
-		MobileNavigationContext
-	);
+	const { mobileNavIsActive, disableMobileNav } = useMobileNavigationContext();
 
 	const handleAnchorClick = () => {
 		if (mobileNavIsActive) return disableMobileNav();

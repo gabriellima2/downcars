@@ -1,16 +1,13 @@
-import { useContext } from "react";
 import { Dialog } from "@headlessui/react";
 import { BsXLg } from "react-icons/bs";
 import Image from "next/image";
 
 import { AnchorsNavigation } from ".";
 
-import { MobileNavigationContext } from "../../contexts/MobileNavigationContext";
+import { useMobileNavigationContext } from "../../hooks/useMobileNavigationContext";
 
 export const MobileNavigation = () => {
-	const { mobileNavIsActive, disableMobileNav } = useContext(
-		MobileNavigationContext
-	);
+	const { mobileNavIsActive, disableMobileNav } = useMobileNavigationContext();
 
 	if (!mobileNavIsActive) return null;
 
@@ -24,6 +21,7 @@ export const MobileNavigation = () => {
 				<Dialog.Title className="hidden">Side Navigation</Dialog.Title>
 				<button
 					onClick={disableMobileNav}
+					data-testid="close-mobile-nav-button"
 					className="absolute right-10 top-10 text-2xl text-white"
 				>
 					<BsXLg />
