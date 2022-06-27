@@ -143,8 +143,8 @@ const Home: NextPage = () => {
 						}}
 					/>
 
-					<section className="flex flex-col items-center px-14 pb-10">
-						<ul className="w-full sm:w-fit flex items-center flex-col sm:flex-row gap-10 md:gap-32 sm:gap-20">
+					<section className="flex flex-col items-center px-4 pb-10">
+						<ul className="w-full sm:w-fit flex items-center flex-col sm:flex-row gap-10 md:gap-32 sm:gap-14">
 							{contacts.map((contact) => (
 								<FullContacts {...contact} key={contact.id} />
 							))}
