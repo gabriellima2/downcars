@@ -61,6 +61,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 							data-slide={elementIndex}
 							disabled={indexCurrentElement === elementIndex}
 							onClick={() => setIndexCurrentElement(elementIndex)}
+							data-testid="carousel-buttons"
 							className="text-white text-[10px] sm:text-xs mx-1"
 						>
 							{indexCurrentElement === elementIndex ? (
