@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import { Carousel } from "../components/Carousel";
@@ -11,15 +11,19 @@ const textsForMockComponent = {
 	second: "Carousel",
 };
 
-async function simulateTimer() {
+async function simulateTimer(): Promise<void> {
 	await act(async () => {
 		await new Promise((r) => setTimeout(r, 4000));
 	});
 }
 
-describe("Carousel Component", () => {
-	let carouselButtons: HTMLButtonElement[];
+function clickOnElement(element: HTMLElement) {
+	act(() => {
+		fireEvent.click(element);
+	});
+}
 
+describe("Carousel Component", () => {
 	beforeEach(() => {
 		render(
 			<Carousel carouselTitle="Title">
@@ -27,26 +31,74 @@ describe("Carousel Component", () => {
 				<MockComponent text={textsForMockComponent.second} />
 			</Carousel>
 		);
-
-		carouselButtons = screen.getAllByTestId("carousel-buttons");
 	});
 
-	it("should render the first component", () => {
-		expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
-		expect(carouselButtons[0]).toHaveAttribute("disabled");
-		expect(carouselButtons[1]).not.toHaveAttribute("disabled");
+	describe("Render child components", () => {
+		it("should render the first child", () => {
+			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+		});
+
+		describe("Rendering with a timer", () => {
+			it("should render another child after some time", async () => {
+				await simulateTimer();
+				expect(
+					screen.getByText(textsForMockComponent.second)
+				).toBeInTheDocument();
+			});
+
+			it("should alternate between the children", async () => {
+				expect(
+					screen.getByText(textsForMockComponent.first)
+				).toBeInTheDocument();
+				await simulateTimer();
+				expect(
+					screen.getByText(textsForMockComponent.second)
+				).toBeInTheDocument();
+				await simulateTimer();
+				expect(
+					screen.getByText(textsForMockComponent.first)
+				).toBeInTheDocument();
+			});
+		});
+
+		describe("Navigation buttons", () => {
+			const getCarouselNavigationButtons = (): HTMLButtonElement[] =>
+				screen.getAllByTestId("carousel-buttons");
+
+			let buttons: HTMLButtonElement[];
+			const buttonIndexToClick = 1;
+
+			beforeEach(() => {
+				buttons = getCarouselNavigationButtons();
+			});
+
+			it("should disable the button when it is clicked", () => {
+				expect(buttons[buttonIndexToClick]).toHaveProperty("disabled", false);
+
+				clickOnElement(buttons[buttonIndexToClick]);
+
+				// Precisa pegar novamento os botões por conta do evento.
+				buttons = getCarouselNavigationButtons();
+				expect(buttons[buttonIndexToClick]).toHaveProperty("disabled", true);
+			});
+
+			it("should make the button available when clicked on another", () => {
+				let buttonIndexToBeAvailable = 0;
+				expect(buttons[buttonIndexToBeAvailable]).toHaveProperty(
+					"disabled",
+					true
+				);
+
+				clickOnElement(buttons[buttonIndexToClick]);
+
+				buttons = screen.getAllByTestId("carousel-buttons");
+				expect(buttons[buttonIndexToBeAvailable]).toHaveProperty(
+					"disabled",
+					false
+				);
+			});
+		});
 	});
 
-	it("should render another component after some time", async () => {
-		await simulateTimer();
-		expect(screen.getByText(textsForMockComponent.second)).toBeInTheDocument();
-	});
-
-	it("should switch between the children of the components", async () => {
-		expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
-		await simulateTimer();
-		expect(screen.getByText(textsForMockComponent.second)).toBeInTheDocument();
-		await simulateTimer();
-		expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
-	});
+	describe("Pause and Play", () => {});
 });
