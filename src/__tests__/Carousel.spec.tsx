@@ -12,8 +12,10 @@ const textsForMockComponent = {
 };
 
 async function simulateTimer(): Promise<void> {
+	const SLIDE_TIMER_IN_MS = 4000;
+
 	await act(async () => {
-		await new Promise((r) => setTimeout(r, 4000));
+		await new Promise((r) => setTimeout(r, SLIDE_TIMER_IN_MS));
 	});
 }
 
@@ -62,11 +64,12 @@ describe("Carousel Component", () => {
 		});
 
 		describe("Navigation buttons", () => {
-			const getCarouselNavigationButtons = (): HTMLButtonElement[] =>
-				screen.getAllByTestId("carousel-buttons");
-
+			const carouselButtonsId = "carousel-buttons";
 			let buttons: HTMLButtonElement[];
 			const buttonIndexToClick = 1;
+
+			const getCarouselNavigationButtons = (): HTMLButtonElement[] =>
+				screen.getAllByTestId(carouselButtonsId);
 
 			beforeEach(() => {
 				buttons = getCarouselNavigationButtons();
@@ -79,11 +82,13 @@ describe("Carousel Component", () => {
 
 				// Precisa pegar novamento os botões por conta do evento.
 				buttons = getCarouselNavigationButtons();
+
 				expect(buttons[buttonIndexToClick]).toHaveProperty("disabled", true);
 			});
 
 			it("should make the button available when clicked on another", () => {
-				let buttonIndexToBeAvailable = 0;
+				const buttonIndexToBeAvailable = 0;
+
 				expect(buttons[buttonIndexToBeAvailable]).toHaveProperty(
 					"disabled",
 					true
@@ -91,7 +96,9 @@ describe("Carousel Component", () => {
 
 				clickOnElement(buttons[buttonIndexToClick]);
 
-				buttons = screen.getAllByTestId("carousel-buttons");
+				// Precisa pegar novamento os botões por conta do evento.
+				buttons = getCarouselNavigationButtons();
+
 				expect(buttons[buttonIndexToBeAvailable]).toHaveProperty(
 					"disabled",
 					false
@@ -100,5 +107,39 @@ describe("Carousel Component", () => {
 		});
 	});
 
-	describe("Pause and Play", () => {});
+	describe("Pause and Play", () => {
+		const pauseButtonText = "Pausar animação";
+		const playButtonText = "Iniciar animação";
+		let pauseButton: HTMLButtonElement;
+
+		beforeEach(() => {
+			pauseButton = screen.getByTitle(pauseButtonText);
+
+			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+		});
+
+		it("should pause when click in button", async () => {
+			clickOnElement(pauseButton);
+			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+
+			await simulateTimer();
+			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+		});
+
+		it("should pause on mouseover on child element", async () => {
+			fireEvent.mouseOver(screen.getByText(textsForMockComponent.first));
+			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+
+			await simulateTimer();
+			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+		});
+
+		it("should pause on focus on child element", async () => {
+			fireEvent.focus(screen.getByText(textsForMockComponent.first));
+			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+
+			await simulateTimer();
+			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+		});
+	});
 });

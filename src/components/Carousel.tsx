@@ -74,7 +74,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 					))}
 					<button
 						type="button"
-						title={`${isStopped ? "Iniciar" : "Pauser"} animação`}
+						title={`${isStopped ? "Iniciar" : "Pausar"} animação`}
 						data-action={isStopped ? "start" : "stop"}
 						aria-pressed={isStopped}
 						onClick={() => handleSlider(isStopped ? "start" : "stop")}
