@@ -9,9 +9,14 @@ import {
 interface CarouselProps {
 	children: ReactNode[];
 	carouselTitle: string;
+	slideTime: number;
 }
 
-export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
+export const Carousel = ({
+	children,
+	carouselTitle,
+	slideTime,
+}: CarouselProps) => {
 	const [indexCurrentElement, setIndexCurrentElement] = useState(0);
 	const [isStopped, setIsStopped] = useState(false);
 
@@ -20,7 +25,7 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 	useEffect(() => {
 		if (isStopped) return clearInterval(rangeSlider);
 
-		rangeSlider = setInterval(moveCarousel, 4000);
+		rangeSlider = setInterval(moveCarousel, slideTime);
 
 		return () => clearInterval(rangeSlider);
 	}, [isStopped]);
@@ -97,3 +102,9 @@ export const Carousel = ({ children, carouselTitle }: CarouselProps) => {
 		</div>
 	);
 };
+
+const defaultProps: Pick<CarouselProps, "slideTime"> = {
+	slideTime: 4000,
+};
+
+Carousel.defaultProps = defaultProps;
