@@ -6,14 +6,14 @@ import { MockComponent } from "../__mocks__/components";
 
 jest.setTimeout(15000);
 
+const SLIDE_TIMER_IN_MS = 100;
+
 const textsForMockComponent = {
 	first: "Test",
 	second: "Carousel",
 };
 
 async function simulateTimer(): Promise<void> {
-	const SLIDE_TIMER_IN_MS = 4000;
-
 	await act(async () => {
 		await new Promise((r) => setTimeout(r, SLIDE_TIMER_IN_MS));
 	});
@@ -28,7 +28,7 @@ function clickOnElement(element: HTMLElement) {
 describe("Carousel Component", () => {
 	beforeEach(() => {
 		render(
-			<Carousel carouselTitle="Title">
+			<Carousel carouselTitle="Title" slideTime={SLIDE_TIMER_IN_MS}>
 				<MockComponent text={textsForMockComponent.first} />
 				<MockComponent text={textsForMockComponent.second} />
 			</Carousel>
@@ -65,8 +65,9 @@ describe("Carousel Component", () => {
 
 		describe("Navigation buttons", () => {
 			const carouselButtonsId = "carousel-buttons";
-			let buttons: HTMLButtonElement[];
 			const buttonIndexToClick = 1;
+
+			let buttons: HTMLButtonElement[];
 
 			const getCarouselNavigationButtons = (): HTMLButtonElement[] =>
 				screen.getAllByTestId(carouselButtonsId);
@@ -107,39 +108,58 @@ describe("Carousel Component", () => {
 		});
 	});
 
-	describe("Pause and Play", () => {
-		const pauseButtonText = "Pausar animação";
-		const playButtonText = "Iniciar animação";
+	describe("Pause Button and Play Button", () => {
+		const getPlayButton = (): HTMLButtonElement =>
+			screen.getByTitle("Iniciar animação");
+
 		let pauseButton: HTMLButtonElement;
+		let playButton: HTMLButtonElement;
+		let firstChildElementOfCarousel: HTMLDivElement;
 
 		beforeEach(() => {
-			pauseButton = screen.getByTitle(pauseButtonText);
-
-			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+			pauseButton = screen.getByTitle("Pausar animação");
+			firstChildElementOfCarousel = screen.getByText(
+				textsForMockComponent.first
+			);
 		});
 
-		it("should pause when click in button", async () => {
+		it("should toggle between pause and start when clicked in", async () => {
 			clickOnElement(pauseButton);
-			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+			playButton = getPlayButton();
+
+			expect(playButton).toBeInTheDocument();
 
 			await simulateTimer();
-			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+			expect(firstChildElementOfCarousel).toBeInTheDocument();
+
+			clickOnElement(playButton);
+			expect(pauseButton).toBeInTheDocument();
 		});
 
-		it("should pause on mouseover on child element", async () => {
-			fireEvent.mouseOver(screen.getByText(textsForMockComponent.first));
-			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+		it("should pause on mouseover or start on mouseleave", async () => {
+			fireEvent.mouseOver(firstChildElementOfCarousel);
+
+			playButton = getPlayButton();
+			expect(playButton).toBeInTheDocument();
 
 			await simulateTimer();
-			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+			expect(firstChildElementOfCarousel).toBeInTheDocument();
+
+			fireEvent.mouseLeave(firstChildElementOfCarousel);
+			expect(pauseButton).toBeInTheDocument();
 		});
 
-		it("should pause on focus on child element", async () => {
-			fireEvent.focus(screen.getByText(textsForMockComponent.first));
-			expect(screen.queryByText(pauseButtonText)).not.toBeInTheDocument();
+		it("should pause on focus or start on blur", async () => {
+			fireEvent.focus(firstChildElementOfCarousel);
+
+			playButton = getPlayButton();
+			expect(playButton).toBeInTheDocument();
 
 			await simulateTimer();
-			expect(screen.getByText(textsForMockComponent.first)).toBeInTheDocument();
+			expect(firstChildElementOfCarousel).toBeInTheDocument();
+
+			fireEvent.blur(firstChildElementOfCarousel);
+			expect(pauseButton).toBeInTheDocument();
 		});
 	});
 });
